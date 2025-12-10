@@ -71,6 +71,7 @@ quote.textContent = showRandomQuote(currentCategory);
 function addQuote() {
     const newQuoteText = document.getElementById('newQuoteText').value;
     const newQuoteCategory = document.getElementById('newQuoteCategory').value;
+    const quoteForm = createAddQuoteForm();
     if (newQuoteText && newQuoteCategory) {
         quotes.push(newQuoteText);
         quoteCategories[newQuoteCategory] = quoteCategories[newQuoteCategory] || [];
@@ -80,5 +81,6 @@ function addQuote() {
         quote.textContent = showRandomQuote(currentCategory);
     }
 }
+
 const addQuoteBtn = document.getElementById('addQuoteBtn');
 addQuoteBtn.addEventListener('click', addQuote);
