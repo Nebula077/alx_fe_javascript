@@ -1,1 +1,67 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Quote Generator</title>
+  </head>
+  <body>
+    <h1>Dynamic Quote Generator</h1>
+    <div>
+        <label for="categoryFilter">Filter by Category:</label>
+        <select id="categoryFilter">
+            <option value="all">All Quotes</option>
+            <option value="inspiration">Inspiration</option>
+            <option value="motivation">Motivation</option>
+        </select>
+    </div>
+    <div id="quoteDisplay"></div>
+    <button id="newQuote">Show New Quote</button>
+    <div>
+    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
+    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
+    <button onclick="addQuote()" id="addQuoteBtn">Add Quote</button>
+    </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: bisque;
+            align-items: center;
+        }
+        #quoteDisplay {
+            font-size: 24px;
+            margin: 20px;
+            padding: 10px;
+            border: 2px solid #000;
+            display: inline-block;
+            max-width: 600px;
+            margin-top: 100px;
+        }
+        #newQuote {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+            font-size: 14px;
+        }
 
+    </style>
+    <script src="script.js"></script>
+  </body>
+  </html>
