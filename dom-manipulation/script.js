@@ -36,6 +36,9 @@ let allQuotes = [
 
 let currentCategory = 'all';
 
+let getAll = document.createElement('li');
+getAll.textContent = 'All Quotes';
+
 function showRandomQuote(category) {
     let quotesToUse;
     if (category === 'all') {
@@ -46,9 +49,25 @@ function showRandomQuote(category) {
     return quotesToUse[Math.floor(Math.random() * quotesToUse.length)];
 }
 
+function showQuotesList(category) {
+    const quoteList = document.getElementById('quoteList');
+    quoteList.innerHTML = '';
+    let quotesToUse;
+    if (category === 'all') {
+        quotesToUse = allQuotes;
+    } else {
+        quotesToUse = quoteCategories[category] || [];
+    }
+    quotesToUse.forEach((quote) => {
+        const quoteItem = document.createElement('li');
+        quoteItem.textContent = quote;
+        quoteList.appendChild(quoteItem);
+    });
+}
+
 const displayQuotebtn = document.getElementById('newQuote');
 displayQuotebtn.addEventListener('click', () => {
-    quote.innerHTML = showRandomQuote(currentCategory);
+    showQuotesList(currentCategory);
 });
 
 const categoryFilter = document.getElementById('categoryFilter');
