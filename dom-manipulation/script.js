@@ -36,7 +36,7 @@ let allQuotes = [
 
 let currentCategory = 'all';
 
-function getRandomQuote(category) {
+function showRandomQuote(category) {
     let quotesToUse;
     if (category === 'all') {
         quotesToUse = allQuotes;
@@ -48,13 +48,13 @@ function getRandomQuote(category) {
 
 const displayQuotebtn = document.getElementById('newQuote');
 displayQuotebtn.addEventListener('click', () => {
-    quote.textContent = getRandomQuote(currentCategory);
+    quote.innerHTML = showRandomQuote(currentCategory);
 });
 
 const categoryFilter = document.getElementById('categoryFilter');
 categoryFilter.addEventListener('change', (e) => {
     currentCategory = e.target.value;
-    quote.textContent = getRandomQuote(currentCategory);
+    quote.textContent = showRandomQuote(currentCategory);
 });
 
 let addedQuotes = localStorage.getItem('addedQuotes');
@@ -66,7 +66,7 @@ if (addedQuotes && Array.isArray(addedQuotes)) {
     allQuotes = allQuotes.concat(addedQuotes);
 }
 // Initial quote display
-quote.textContent = getRandomQuote(currentCategory);
+quote.textContent = showRandomQuote(currentCategory);
 
 function addQuote() {
     const newQuoteText = document.getElementById('newQuoteText').value;
@@ -77,7 +77,7 @@ function addQuote() {
         quoteCategories[newQuoteCategory].push(newQuoteText);
         allQuotes.push(newQuoteText);
         localStorage.setItem('addedQuotes', JSON.stringify(quotes));
-        quote.textContent = getRandomQuote(currentCategory);
+        quote.textContent = showRandomQuote(currentCategory);
     }
 }
 const addQuoteBtn = document.getElementById('addQuoteBtn');
