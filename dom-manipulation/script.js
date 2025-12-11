@@ -159,3 +159,33 @@ function createDowlnloadLink(data, filename) {
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
 }
+
+function addQuoteToserver() {
+    const data = {
+        quotes: quotes
+    };
+    const filename = 'quotes.json';
+    const jsonData = JSON.stringify(data);
+    createDowlnloadLink(jsonData, filename);
+}
+
+function syncQuotesToServer() {
+    addQuoteToserver();
+}
+
+fetch ('https://jsonplaceholder.typicode.com/todos/1')
+    .then(response => response.json())
+    .then(data => {
+        quotes = data.quotes;
+        allQuotes = allQuotes.concat(quotes);
+        quote.textContent = showRandomQuote(currentCategory);
+    })
+    .catch(error => {
+        console.error('Error fetching quotes:', error);
+    });
+
+function periodicSync() {
+    setInterval(() => {
+        syncQuotesToServer();
+    }, 60000);    
+}
