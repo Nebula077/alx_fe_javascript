@@ -82,6 +82,22 @@ categoryFilter.addEventListener('change', (e) => {
     quote.textContent = showRandomQuote(currentCategory);
 });
 
+function populateCategories() {
+    const categoryFilter = document.getElementById('categoryFilter');
+    categoryFilter.innerHTML = '<option value="all">All Quotes</option>';
+    for (const category in quoteCategories) {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        categoryFilter.appendChild(option);
+    }
+}
+
+function filterQuotes() {
+    const selectedCategory = categoryFilter.value;
+    selectedCategory.save();
+    showQuotesList(selectedCategory);
+}
 let addedQuotes = localStorage.getItem('addedQuotes');
 if (addedQuotes) {
     addedQuotes = JSON.parse(addedQuotes);    
