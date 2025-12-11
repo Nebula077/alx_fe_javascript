@@ -186,19 +186,25 @@ function fetchQuotesFromServer() {
         });
 }
 
-fetch ('https://jsonplaceholder.typicode.com/todos/1')
-    .then(response => response.json())
+fetch ('https://jsonplaceholder.typicode.com/posts')
+    await response.json()
     .then(data => {
-        quotes = data.quotes;
-        allQuotes = allQuotes.concat(quotes);
-        quote.textContent = showRandomQuote(currentCategory);
+        console.log(data);
     })
     .catch(error => {
-        console.error('Error fetching quotes:', error);
+        console.error('Error fetching data:', error);
+        async function fetchData() {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}fetchData();
     });
 
-function periodicSync() {
-    setInterval(() => {
-        syncQuotesToServer();
-    }, 60000);    
+async function periodicSync() {
+    await syncQuotesToServer();
+    setTimeout(periodicSync, 60000); // Sync every 60 seconds   
 }
