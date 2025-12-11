@@ -173,6 +173,19 @@ function syncQuotesToServer() {
     addQuoteToserver();
 }
 
+function fetchQuotesFromServer() {
+    fetch('quotes.json')
+        .then(response => response.json())
+        .then(data => {
+            quotes = data.quotes;
+            allQuotes = allQuotes.concat(quotes);
+            quote.textContent = showRandomQuote(currentCategory);
+        })
+        .catch(error => {
+            console.error('Error fetching quotes:', error);
+        });
+}
+
 fetch ('https://jsonplaceholder.typicode.com/todos/1')
     .then(response => response.json())
     .then(data => {
