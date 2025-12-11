@@ -168,7 +168,22 @@ function addQuoteToserver() {
     const jsonData = JSON.stringify(data);
     createDowlnloadLink(jsonData, filename);
 }
-
+ 
+function sendQuotesToServer() {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(quotes)
+    contentType: 'application/json',
+    data: JSON.stringify(quotes),
+    success: function(response) {
+        console.log('Quotes sent to server successfully.');
+    },
+    error: function(xhr, status, error) {
+        console.error('Error sending quotes to server:', error);
+    }
+}
 function syncQuotesToServer() {
     addQuoteToserver();
 }
