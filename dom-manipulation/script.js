@@ -55,6 +55,11 @@ function showQuotesList(category) {
     let quotesToUse;
     if (category === 'all') {
         quotesToUse = allQuotes;
+        allQuotes.forEach((quote) => {
+            const quoteItem = document.createElement('li');
+            quoteItem.textContent = quote;
+            quoteList.appendChild(quoteItem);
+        });
     } else {
         quotesToUse = quoteCategories[category] || [];
     }
@@ -67,7 +72,8 @@ function showQuotesList(category) {
 
 const displayQuotebtn = document.getElementById('newQuote');
 displayQuotebtn.addEventListener('click', () => {
-    showQuotesList(currentCategory);
+    allQuotes = allQuotes.concat(quotes);
+    quote.textContent = showRandomQuote(currentCategory);
 });
 
 const categoryFilter = document.getElementById('categoryFilter');
@@ -103,3 +109,24 @@ function addQuote() {
 
 const addQuoteBtn = document.getElementById('addQuoteBtn');
 addQuoteBtn.addEventListener('click', addQuote);
+
+function importFromJsonFile(event) {
+    const fileReader = new FileReader();
+    fileReader.onload = function(event) {
+      const importedQuotes = JSON.parse(event.target.result);
+      quotes.push(...importedQuotes);
+      saveQuotes();
+      alert('Quotes imported successfully!');
+    };
+    fileReader.readAsText(event.target.files[0]);
+  }
+
+  function saveQuotes() {
+    localStorage.setItem('addedQuotes', JSON.stringify(quotes));
+  }
+
+
+const importBtn = document.getElementById('importBtn');
+importBtn.addEventListener('click', () => {
+    importFromJsonFile();
+});
