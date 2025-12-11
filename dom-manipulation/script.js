@@ -178,7 +178,7 @@ function sendQuotesToServer() {
     contentType: 'application/json',
     data: JSON.stringify(quotes),
     success: function(response) {
-        console.log('Quotes sent to server successfully.');
+        console.log('Quotes synced with server!', response);
     },
     error: function(xhr, status, error) {
         console.error('Error sending quotes to server:', error);
