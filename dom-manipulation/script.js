@@ -222,4 +222,5 @@ fetch ('https://jsonplaceholder.typicode.com/posts')
 async function periodicSync() {
     await syncQuotesToServer();
     setTimeout(periodicSync, 60000); // Sync every 60 seconds   
+    setInterval(syncQuotesToServer, 60000);
 }
