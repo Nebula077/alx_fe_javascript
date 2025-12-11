@@ -87,11 +87,7 @@ function populateCategories() {
     categoryFilter.innerHTML = '<option value="all">All Quotes</option>';
     for (const category in quoteCategories) {
         const option = document.createElement('option');
-        Map.prototype.forEach.call(quoteCategories, (value, key) => {
-            option.value = key;
-            option.textContent = key;
-            categoryFilter.appendChild(option);
-        })
+        option.map = category;
         option.value = category;
         option.textContent = category;
         categoryFilter.appendChild(option);
